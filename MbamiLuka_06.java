@@ -1,14 +1,49 @@
+import java.util.Random;
+import java.util.Scanner;
 
+/* INPUT - Project 06_Input.txt
+ * 
+ * This class' main method uses a scanner to read all values from
+ * the specified input file. Then, values are placed into an array.
+ * The array is sorted using two sorting techniques ( Shell and Quick sort)
+ * 
+ * OUTPUT - Project 06_Output.txt
+ * 
+ * Idiosyncratic - belonging to one's peculiar and individual character
+ * 
+ * "Where there is life there is hope" - S.Hawking
+ * 
+ * @author Mbami Luka * Zach Morlan
+ */
 public class MbamiLuka_06 
 {
 	//*************************************************************************
 	public static void main ( String[]args)
 	{
-		int [] numsArr = { 54, 26, 93, 17, 77, 31, 44, 55, 20 };
+		int size = 100;							// Number of digits to be read
+		int [] arrUnsorted = new int [size];	// Array to hold digits read
+		int [] arrSorted = new int [size];		// Array to hold sorted digits
 		
-		numsArr = shellSort(numsArr);
+		int start = 0;
+		int end = size-1;
 		
-		printArray (numsArr);
+		final String INPUT_FILENAME;			// File being read from
+		INPUT_FILENAME = "2050 Project 06_Input.txt";
+		Scanner input = new Scanner ( INPUT_FILENAME);
+		
+		/*
+		int i = 0;
+		while ( input.hasNextLine() )
+		{
+			int value = Integer.parseInt( input.next());
+			arrUnsorted[i] = value;
+			i++;			
+		}
+		*/
+		
+		arrSorted = quickSort ( arrUnsorted, start , end);
+		
+		printArray ( arrUnsorted);
 	}
 	//*************************************************************************
 	/*
@@ -28,7 +63,7 @@ public class MbamiLuka_06
 		{
 			for (int i = 0; i < gap; i++)
 			{
-				gapInsertionSort ( arr, gap);
+				insertionSort ( arr, gap);
 			}
 			gap /= 2;
 		}
@@ -42,8 +77,9 @@ public class MbamiLuka_06
 	 * of insertion sort.
 	 * 
 	 * @param		arr		Specified array to be sorted
+	 * @param		gap		Distance between each value to pair and compare 
 	 */
-	public static void gapInsertionSort ( int[]arr, int gap)
+	public static void insertionSort ( int[]arr, int gap)
 	{
 		for ( int i = 0; i < arr.length; i += gap)
 		{
@@ -63,6 +99,7 @@ public class MbamiLuka_06
 	//*************************************************************************
 	/*
 	 * This method will print the values of a given array
+	 * @param		arr		specified array to print
 	 */
 	public static void printArray ( int [] arr)
 	{
@@ -73,4 +110,117 @@ public class MbamiLuka_06
 		}
 	}
 	//*************************************************************************
+	
+	public static int[] quickSort ( int [] array, int first, int last) 
+	{
+        
+        final int MIN_SIZE = 4;
+        int pivotIndex = 0; 
+        
+        if (last - first + 1 < MIN_SIZE) 
+        {
+        
+           insertionSort ( array, first, last); 
+        
+        }// End if
+        else 
+        {
+        
+        pivotIndex = partition ( array, first, last);
+        
+        quickSort(array, first, pivotIndex - 1);
+        quickSort(array, pivotIndex + 1, last);
+        
+        }// End else
+        
+		return array;
+	}
+        
+     
+	
+	//*****************************************************************************  
+    /**
+    *  This method sorts the first middle and last entry by acending order
+    * @param T [] array an array storing some sort of data type
+    * @param int first the position of the first entry of the array 
+    * @param int last the position of the last entry of the array
+    * @return int pivotIndex the postion of the pivot value
+    */           
+    public static int partition ( int [] array, int first, int last) 
+    {
+             
+    int pivot = array[last];
+    int i = first - 1;
+    for ( int j = first; j < last; ++j) 
+    {
+      if ( array[j] <= pivot) 
+      {
+        swap ( array, ++i, j);
+      }
+    }
+    swap ( array, ++i, last);
+    return i;            
+    } // End partition
+    
+    public static  void insertionSort(int [] array, int first, int last) 
+    {      
+         if( first < last) 
+         {
+         
+            insertionSort ( array, first, last - 1);
+            
+            insertInOrder ( array[last], array, first, last - 1);
+         
+         } // End if
+            
+     } // End InsertionSort
+    
+  //*****************************************************************************
+    /**
+    * Sorts small array under MIN_SIZE into acending order
+    * @param  T anEntry abstract data type from the array
+    * @param array An array of comparable Objects.
+    * @param int first postion of first comparable object in array.
+    * @param int last postion of the last comparable object in array.  
+    * @return	none
+    */
+    public static void insertInOrder(int anEntry, int [] array, int first, int last) 
+    {
+           
+        if(anEntry >= array[last] ) 
+        {
+        
+           array[last + 1] = anEntry;
+        
+        } // End if
+        else if( first < last) 
+        {
+        
+           array[last + 1] = array[last];
+           insertInOrder(anEntry, array, first, last - 1);
+        } // End else if
+        else {
+        
+           array[last + 1] = array[last];
+           array[last] = anEntry; 
+        } // End else 
+                
+    } // End InsertionSort 
+    
+  //*****************************************************************************   
+    /**
+    * Swaps two entries in the array 
+    * @param int i First entry in the array to be swapped 
+    * @param int j Second entry in the array to be swapped
+    * @return none
+    */      
+    private static void swap ( int [] array, int i, int j) 
+    {
+         
+         int temp = array[i];
+         
+         array[i] = array[j];
+         array[j] = temp;
+         
+     } // End swap
 }
