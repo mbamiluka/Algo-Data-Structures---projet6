@@ -10,7 +10,6 @@ ascending order.
 ### You can run this project here - https://onlinegdb.com/FQGxplfup
 
 
-
 ## RandomIntegerGenerator.java
 This class generates a hundred random numbers using a loop and
 and the java.random.Random package. These numbers are added to a text file
