@@ -5,7 +5,7 @@ In partnership with Zach Morlan (git: zmorlan1) we created two complex sorting a
 The goal of this program/project was to create two methods (one for shell and another for quick sort)
 
 A hundred random numbers are generated to the text file 'Project06_Input.txt', and then our sorting methods puts
-them in ascending order.
+them in an ascending order.
 
 
 ### You can run this project here - https://onlinegdb.com/FQGxplfup
