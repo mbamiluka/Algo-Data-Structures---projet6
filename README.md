@@ -1,11 +1,11 @@
 # Algo-Data-Structures---projet6
-In partnership with Zach Morlan (git: zmorlan1) Shell sort and Quick sort are used in sorting numbers generated at random into an array.
+In partnership with Zach Morlan (git: zmorlan1) we created two complex sorting algorithms.
 
 The goal of this program/project was to create two methods (one for shell and another for quick sort)
 A hundred random numbers are generated to an input file, and then our sorting methods arrange them in
 ascending order.
 
-You can run this project here -
+### You can run this project here -
 
 ## RandomIntegerGeneraator.java
 This class generates a hundred random numbers using a loop and
