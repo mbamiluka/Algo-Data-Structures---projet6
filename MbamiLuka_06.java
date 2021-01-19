@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /* INPUT - Project 06_Input.txt
  * 
@@ -15,10 +17,10 @@ import java.util.Scanner;
  * 
  * @author Mbami Luka * Zach Morlan
  */
-public class MbamiLuka_06 
+public class Main 
 {
 	//*************************************************************************
-	public static void main ( String[]args)
+	public static void main ( String[]args ) throws FileNotFoundException 
 	{
 		int size = 100;							// Number of digits to be read
 		int [] arrUnsorted = new int [size];	// Array to hold digits read
@@ -28,10 +30,11 @@ public class MbamiLuka_06
 		int end = size-1;
 		
 		final String INPUT_FILENAME;			// File being read from
-		INPUT_FILENAME = "2050 Project 06_Input.txt";
-		Scanner input = new Scanner ( INPUT_FILENAME);
+		INPUT_FILENAME = "Project06_Input.txt";
+		File inputFile = new File(INPUT_FILENAME);
+		Scanner input = new Scanner (inputFile);
 		
-		/*
+		
 		int i = 0;
 		while ( input.hasNextLine() )
 		{
@@ -39,11 +42,11 @@ public class MbamiLuka_06
 			arrUnsorted[i] = value;
 			i++;			
 		}
-		*/
 		
-		arrSorted = quickSort ( arrUnsorted, start , end);
 		
-		printArray ( arrUnsorted);
+		arrSorted = shellSort ( arrUnsorted);
+		
+		printArray ( arrSorted);
 	}
 	//*************************************************************************
 	/*
