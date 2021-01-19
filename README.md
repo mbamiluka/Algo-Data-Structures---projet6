@@ -23,5 +23,6 @@ These are the 100 random generated numbers from the class above.
 Last, I have an insertion sort method because shell sort uses insertion sort but effectively.
 
 Shell sort O(n^2)
+
 Quick sort O(n^2)
 
